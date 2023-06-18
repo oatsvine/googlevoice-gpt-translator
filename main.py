@@ -11,6 +11,7 @@ GPT_CONFIG_DIR = "/home/user/.config/chatgpt-wrapper"
 GPT_DATA_DIR = "/home/user/.local/share/chatgpt-wrapper"
 GPT_PROFILE = "interpretor"
 GPT_MODEL = "gpt-4"
+GPT_TEMPLATE = "mandarin.md"
 
 class GPTError(RuntimeError):
     """Raised when the conversation leaves strict mode."""
@@ -124,7 +125,7 @@ class Interpretor:
         print(f"In conversation id={c.id} title={c.title}")
         self.gpt.set_model("gpt-4")
         self.templates.load_templates()
-        prompt = self.templates.build_message_from_template("mandarin.md")[0]
+        prompt = self.templates.build_message_from_template(GPT_TEMPLATE)[0]
         print("Initializing with template:\n", prompt)
         success, response, message = self.gpt.ask(f"{prompt}")
         if success:
