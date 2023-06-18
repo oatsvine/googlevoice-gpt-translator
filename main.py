@@ -138,23 +138,23 @@ class Interpretor:
         page = self.context.new_page()
         page.goto("https://voice.google.com/u/0/messages")
 
-        cookies = self.context.cookies()
-        print("Found cookies", cookies)
-        with open('cookies.json', 'w', encoding='utf-8') as f:
-            json.dump(cookies, f, ensure_ascii=False, indent=4)
-
         # Wait for five minutes
         print("Log in if necessary then select a message thread; waiting for UI components to be visible")
         msg_box = page.get_by_placeholder("Type a message")
         msg_box.wait_for(state='visible', timeout=300000)
         send_btn = page.get_by_label("Send message")
         send_btn.wait_for(state='visible', timeout=300000)
-
         print("Message thread UI ready; acquiring GPT interpreter conversation")
+
+        # Store cookied after authentication is confirmed
+        cookies = self.context.cookies()
+        with open('cookies.json', 'w', encoding='utf-8') as f:
+            json.dump(cookies, f, ensure_ascii=False, indent=4)
+
         c = self.acquire_conversation()
 
         # Print existing messages in thread without translating them.
-        print("Collecting contents of the message thread:")
+        print("Collecting message thread history:")
         self.incoming, self.outgoing = read_thread(page)
         for msg in self.incoming:
             print(f"You> {msg}")
