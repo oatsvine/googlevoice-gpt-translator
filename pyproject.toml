@@ -1,0 +1,10 @@
+[tool.pyright]
+include = ["main.py"]
+exclude = ["**/node_modules",
+    "**/__pycache__",
+]
+
+reportOptionalMemberAccess = false
+
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
