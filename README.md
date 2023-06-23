@@ -1,8 +1,10 @@
 # Google Voice GPT Translator
 
-This repository contains a Python project that interprets Google Voice conversations using a GPT-4 model. The project listens to incoming and outgoing Google Voice messages and translates them via the GPT-4 model.
+This repository contains a Python project that interprets Google Voice SMS threads using a GPT-4 model. The project listens to incoming and outgoing Google Voice messages and translates them via the GPT-4 model.
 
-This is a utilitarian approach that binds a GPT conversation to the selected Google Voice message thread UI.
+This is a utilitarian approach that launches the Google Voice UI, allowing to authenticate and select a message thread in a low-tech manner. It uses [chatgpt-wrapper](https://github.com/mmabrouk/chatgpt-wrapper) as a stateful client for the GPT-4 API. 
+
+Functionally, it expects the selected message thread to be between two interlocutors writing in their respective languages. It'll detect the languages of each incoming and outcoing messages. You may simply leave this script running on your Linux host, and do the text messaging with the Google Voice app.
 
 ## Getting Started
 
